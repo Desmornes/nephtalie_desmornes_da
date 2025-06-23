@@ -300,5 +300,20 @@ curl http://localhost:8000
 
 ```
 
+3. Variable d'environnement
+
+🌞 Définir une variable d'environnement au lancement du conteneur
+
+ajoutez une option sur le docker run pour lancer l'image it4lik/meow-api en définissant une variable d'environnement
+doit définir la variable d'environnement mentionnée plus haut
+écoutez sur le port 16789
+```bash
+PS C:\Users\nepht> docker run -d -p 16789:16789 -e LISTEN_PORT=16789 it4lik/meow-api
+b900f5b04215cb9c94d7415af48ff32a7b006c8484f941bcd858e4ddcb51c2f3
+
+curl http://localhost:16789
+Hello world
+```
+
 
 
