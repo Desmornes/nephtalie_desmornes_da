@@ -356,5 +356,101 @@ docker.elastic.co/kibana/kibana                 7.17.10   ba4afcebad69   2 years
 docker.elastic.co/logstash/logstash             7.17.10   1fe6f316b8af   2 years ago    782MB
 mysql                                           8.0.4     96dd4fed4359   7 years ago    291MB
 
-``
+```
+
+🌞 Lancez un conteneur à partir de l'image Python
+lancez un terminal bash ou sh à l'intérieur du conteneur
+vérifiez que la commande python est installée dans le conteneur, à la bonne version
+```bash
+docker run -it python:3.11 bash
+PS C:\Users\nepht> docker run -it python:3.11 bash
+root@882f90ef5264:/# python --version
+Python 3.11.13
+```
+
+II. Construire une image
+A. Build la meow-api
+🌞 Récupérer le code et le Dockerfile sur votre machine
+🌞 Build une image meow-api
+```bash
+PS C:\Users\nepht> cd meow-api
+PS C:\Users\nepht\meow-api> docker build . -t meow-api
+[+] Building 14.5s (8/8) FINISHED                                                                                                                docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                                                             0.2s
+ => => transferring dockerfile: 129B                                                                                                                             0.0s 
+ => [internal] load metadata for docker.io/library/python:3.11-slim                                                                                              6.0s
+ => [internal] load .dockerignore                                                                                                                                0.2s
+ => => transferring context: 2B                                                                                                                                  0.0s 
+ => [internal] load build context                                                                                                                                0.2s
+ => => transferring context: 51B                                                                                                                                 0.0s
+ => [1/3] FROM docker.io/library/python:3.11-slim@sha256:9e1912aab0a30bbd9488eb79063f68f42a68ab0946cbe98fecf197fe5b085506                                        5.7s 
+ => => resolve docker.io/library/python:3.11-slim@sha256:9e1912aab0a30bbd9488eb79063f68f42a68ab0946cbe98fecf197fe5b085506                                        0.1s 
+ => => sha256:9e1912aab0a30bbd9488eb79063f68f42a68ab0946cbe98fecf197fe5b085506 9.13kB / 9.13kB                                                                   0.0s 
+ => => sha256:cfa2a40862158178855ab4f7cf6b9341646f826b0467a7b72bdeac68b03986bb 1.75kB / 1.75kB                                                                   0.0s 
+ => => sha256:be3324b8ee1a17161c5fa4a20f310d4af42cbb4f22a1e7a32a98ee9196a6defd 5.37kB / 5.37kB                                                                   0.0s 
+ => => sha256:15658014cd85cd0d8b913d50b4388228aebcf0437d43cfb37e8a5177e8b2bcf8 248B / 248B                                                                       0.3s 
+ => => sha256:799440a7bae7c08a5fe9d9e5a1ccd72fc3cbf9d85fa4be450e12b8550175c620 3.51MB / 3.51MB                                                                   1.6s 
+ => => sha256:9596beeb5a6dc0950529870568799000e8d73fb678969ac2f485005cd5da1087 16.21MB / 16.21MB                                                                 2.3s 
+ => => extracting sha256:799440a7bae7c08a5fe9d9e5a1ccd72fc3cbf9d85fa4be450e12b8550175c620                                                                        0.8s 
+ => => extracting sha256:9596beeb5a6dc0950529870568799000e8d73fb678969ac2f485005cd5da1087                                                                        2.1s 
+ => => extracting sha256:15658014cd85cd0d8b913d50b4388228aebcf0437d43cfb37e8a5177e8b2bcf8                                                                        0.0s 
+ => [2/3] COPY app.py /app/app.py                                                                                                                                1.3s 
+ => [3/3] WORKDIR /app                                                                                                                                           0.2s 
+ => exporting to image                                                                                                                                           0.4s 
+ => => exporting layers                                                                                                                                          0.2s 
+ => => writing image sha256:c0caba471e489ef4cd577f2f479209bf4144e74f41f4e2af4d5757f4af802f86                                                                     0.0s 
+ => => naming to docker.io/library/meow-api                                                                                                                      0.0s 
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/w04n8bcb0n7etwl6t23awmyae
+```
+
+🌞 Afficher la liste des images dispos sur votre machine
+
+dans la sortie de la commande, on devrait voir meow-api que vous venez de build
+```bash
+PS C:\Users\nepht\meow-api> docker images
+REPOSITORY                                      TAG       IMAGE ID       CREATED         SIZE  
+meow-api                                        latest    c0caba471e48   7 minutes ago   130MB 
+it4lik/meow-api                                 latest    b91b5ab0010d   5 hours ago     234MB 
+it4lik/meow-api                                 <none>    bfaaa2024a8d   6 days ago      1.02GB
+linuxserver/wikijs                              latest    5dbb81dacc62   10 days ago     484MB 
+python                                          3.11      98b8dc21a9bf   2 weeks ago     1.01GB
+wordpress                                       latest    7ae09634a9ff   7 weeks ago     703MB 
+ubuntu                                          latest    a04dc4851cbc   4 months ago    78.1MB
+hello-world                                     latest    74cc54e27dc4   5 months ago    10.1kB
+docker.elastic.co/elasticsearch/elasticsearch   7.17.10   a305059888ba   2 years ago     622MB 
+docker.elastic.co/kibana/kibana                 7.17.10   ba4afcebad69   2 years ago     811MB 
+docker.elastic.co/logstash/logstash             7.17.10   1fe6f316b8af   2 years ago     782MB 
+mysql                                           8.0.4     96dd4fed4359   7 years ago     291MB 
+```
+
+🌞 Run cette image
+
+faites un docker run qui lance l'image nouvellement build
+```bash
+PS C:\Users\nepht\meow-api> docker run -d -p 8080:8000 meow-api
+>>
+a1d950f7ca0b750749dfbeab4d712f33c5f7ca407618a1bb0d4934aff3903d19
+```
+B. Packagez vous-meme un app
+🌞 Ecrire un Dockerfile pour packager ce code
+
+inspirez-vous de la structure de mon app/ et du Dockerfile qu'il contient
+réservez encore un nouveau dossier sur votre machine pour stocker le code et son Dockerfile
+
+
+🌞 Build l'image
+
+déplace-toi dans ton répertoire
+docker build . -t python_app:version_de_ouf
+
+🌞 Proof !
+
+une fois le build terminé, constater que l'image est dispo avec une commande docker
+
+
+🌞 Lancer l'image
+
+lance l'image avec docker run :
+
 
