@@ -4,7 +4,8 @@ II. Un premier conteneur en vif
 1. Simple run
 🌞 Lancer un conteneur meow-api
 
-```
+
+```bash
    docker run -p 8000:8000 it4lik/meow-api
 Unable to find image 'it4lik/meow-api:latest' locally
 latest: Pulling from it4lik/meow-api
@@ -25,13 +26,11 @@ Status: Downloaded newer image for it4lik/meow-api:latest
 
 - vérifier que le conteneur est actif avec une commande qui liste les conteneurs en cours de fonctionnement
 - afficher les logs du conteneur
- ```
+```bash
   PS C:\Users\nepht> docker ps
 CONTAINER ID   IMAGE             COMMAND                  CREATED         STATUS         PORTS                    NAMES
 d01718a8dcf0   it4lik/meow-api   "python3 -m http.ser…"   6 minutes ago   Up 4 minutes   0.0.0.0:8000->8000/tcp   condescending_booth
-```
 - afficher toutes les informations relatives au conteneur avec une commande docker inspect
-```
   PS C:\Users\nepht> docker inspect d01718a8dcf0
 [
     {
@@ -259,24 +258,32 @@ d01718a8dcf0   it4lik/meow-api   "python3 -m http.ser…"   6 minutes ago   Up 4
 ]
 ```
 - depuis le navigateur de votre PC, visiter la route / de l'API sur http://votre_ip:8000
-  ```
+```bash
   {
   "message": "Available routes",
   "routes": {
     "get_user_by_id": "http://localhost:8000/user/1",
     "list_all_users": "http://localhost:8000/users"
   }
-}
 ```
+
 
   🌞 Lancer le conteneur en tâche de fond
 
 - ajoutez -d à la commande
-  
-  PS C:\Users\nepht> docker run -p -d 8000:8888 it4lik/meow-api
-   >>
- 56710f2ab2db5562346a35d90ca6beb67406a3513a1d678ba823ad33ab8224ec 
- ```
+ ```bash
+  PS C:\Users\nepht> docker run -d -p 8000:8000 it4lik/meow-api
+7af873163851a1c1b388cfaaf901f269952ec8a4ce0416c03531c17b3a65069b
+```
 - Consultez les logs du conteneur avec une commande docker logs
+  ```bash
+  PS C:\Users\nepht> docker logs 7a
+ * Serving Flask app 'app'
+ * Debug mode: off.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://172.17.0.2:8000
+  ```
 
-il faudra préciser l'ID ou le nom du conteneur en argument à la commande
+
+
