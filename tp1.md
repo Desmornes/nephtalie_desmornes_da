@@ -25,12 +25,14 @@ Status: Downloaded newer image for it4lik/meow-api:latest
 
 - vérifier que le conteneur est actif avec une commande qui liste les conteneurs en cours de fonctionnement
 - afficher les logs du conteneur
+  ```
   PS C:\Users\nepht> docker ps
 CONTAINER ID   IMAGE             COMMAND                  CREATED         STATUS         PORTS                    NAMES
 d01718a8dcf0   it4lik/meow-api   "python3 -m http.ser…"   6 minutes ago   Up 4 minutes   0.0.0.0:8000->8000/tcp   condescending_booth
+```
 - afficher toutes les informations relatives au conteneur avec une commande docker inspect
+```
   PS C:\Users\nepht> docker inspect d01718a8dcf0
-  ```
 [
     {
         "Id": "d01718a8dcf04bda715af04c15dfa6aa512f10b79edbeae85e2ef035cafb15d3",
