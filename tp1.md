@@ -30,7 +30,9 @@ Status: Downloaded newer image for it4lik/meow-api:latest
   PS C:\Users\nepht> docker ps
 CONTAINER ID   IMAGE             COMMAND                  CREATED         STATUS         PORTS                    NAMES
 d01718a8dcf0   it4lik/meow-api   "python3 -m http.ser…"   6 minutes ago   Up 4 minutes   0.0.0.0:8000->8000/tcp   condescending_booth
+```
 - afficher toutes les informations relatives au conteneur avec une commande docker inspect
+```bash
   PS C:\Users\nepht> docker inspect d01718a8dcf0
 [
     {
@@ -276,14 +278,27 @@ d01718a8dcf0   it4lik/meow-api   "python3 -m http.ser…"   6 minutes ago   Up 4
 7af873163851a1c1b388cfaaf901f269952ec8a4ce0416c03531c17b3a65069b
 ```
 - Consultez les logs du conteneur avec une commande docker logs
-  ```bash
+```bash
   PS C:\Users\nepht> docker logs 7a
  * Serving Flask app 'app'
  * Debug mode: off.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:8000
- * Running on http://172.17.0.2:8000
-  ```
+ * Running on http://172.17.0.2:8000 
+```
+
+2.Volumes
+
+🌞 Remplacer le code app.py
+
+vous devez écrire un ptit fichier de code Python écoute sur le port 8000 (comme mon API)
+```bash
+PS C:\Users\nepht> docker run -v C:\Users\nepht\meow\app.py:/app/app.py it4lik/meow-api
+helloooo
+
+curl http://localhost:8000
+
+```
 
 
 
