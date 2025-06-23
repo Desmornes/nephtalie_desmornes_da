@@ -2,7 +2,9 @@ TP1 - Docker
 II. Un premier conteneur en vif
 
 1. Simple run
-- Lancer un conteneur meow-api
+🌞 Lancer un conteneur meow-api
+
+```
    docker run -p 8000:8000 it4lik/meow-api
 Unable to find image 'it4lik/meow-api:latest' locally
 latest: Pulling from it4lik/meow-api
@@ -17,6 +19,7 @@ cb5bd488993b: Pull complete
 3828cfa2baf2: Pull complete
 Digest: sha256:51264a230802917353c166e1c4989fa94d22f632c8f10db2a8ff273d2a2887e4
 Status: Downloaded newer image for it4lik/meow-api:latest
+```
 
 2.Visitons
 
@@ -253,3 +256,19 @@ d01718a8dcf0   it4lik/meow-api   "python3 -m http.ser…"   6 minutes ago   Up 4
 ]
 
 - depuis le navigateur de votre PC, visiter la route / de l'API sur http://votre_ip:8000
+  MEOOOOW ðŸˆðŸˆðŸˆðŸˆðŸˆðŸˆ
+
+
+  🌞 Lancer le conteneur en tâche de fond
+
+- ajoutez -d à la commande
+  PS C:\Users\nepht> docker run -p -d 8000:8888 it4lik/meow-api 
+
+- Consultez les logs du conteneur
+ PS C:\Users\nepht> docker run -d -p 8000:8888 it4lik/meow-api
+ >>
+ 56710f2ab2db5562346a35d90ca6beb67406a3513a1d678ba823ad33ab8224ec
+
+avec une commande docker logs
+
+il faudra préciser l'ID ou le nom du conteneur en argument à la commande
