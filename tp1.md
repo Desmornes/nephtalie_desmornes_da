@@ -551,5 +551,61 @@ latest: digest: sha256:fa8c95c2be8fcf2d0a32a38264b9dc7e76c342c448bf608ad59604f0e
 PS C:\Users\nepht\tp-da> 
 ```
 
+Part III. Compose
+🌞 Créez un fichier docker-compose.yml
+🌞 Lancez les deux conteneurs avec docker compose
 
+```bash
+PS C:\Users\nepht\compose-test> docker compose up -d
+time="2025-06-23T17:04:19+02:00" level=warning msg="C:\\Users\\nepht\\compose-test\\docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+[+] Running 3/3
+ ✔ conteneur_nul Pulled                                                                                                                                          4.1s 
+   ✔ 0c01110621e0 Already exists                                                                                                                                 0.0s 
+ ✔ conteneur_flopesque Pulled                                                                                                                                    4.3s 
+[+] Running 3/3
+ ✔ Network compose-test_default                  Created                                                                                                         0.4s 
+ ✔ Container compose-test-conteneur_nul-1        Started                                                                                                         1.2s 
+ ✔ Container compose-test-conteneur_flopesque-1  Started  
+```
+
+
+🌞 Vérifier que les deux conteneurs tournent
+```bash
+PS C:\Users\nepht\compose-test> docker compose ps
+time="2025-06-23T17:06:21+02:00" level=warning msg="C:\\Users\\nepht\\compose-test\\docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+NAME                                 IMAGE     COMMAND        SERVICE               CREATED              STATUS              PORTS
+compose-test-conteneur_flopesque-1   debian    "sleep 9999"   conteneur_flopesque   About a minute ago   Up About a minute
+compose-test-conteneur_nul-1         debian    "sleep 9999"   conteneur_nul         About a minute ago   Up About a minute
+```
+
+🌞 Pop un shell dans le conteneur conteneur_nul
+```bash
+PS C:\Users\nepht\compose-test> docker exec -it compose-test-conteneur_nul-1 bash
+root@31ba86c22a4e:/# apt update && apt install -y iputils-ping
+Get:1 http://deb.debian.org/debian bookworm InRelease [151 kB]
+Get:2 http://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+Get:3 http://deb.debian.org/debian-security bookworm-security InRelease [48.0 kB]
+Get:4 http://deb.debian.org/debian bookworm/main amd64 Packages [8793 kB]
+Get:5 http://deb.debian.org/debian bookworm-updates/main amd64 Packages [756 B]
+Get:6 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages [268 kB]
+Fetched 9316 kB in 4s (2269 kB/s)
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+All packages are up to date.
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  libcap2-bin libpam-cap
+The following NEW packages will be installed:
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 78.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.36.0 /usr/local/share/perl/5.36.0 /usr/lib/x86_64-linux-gnu/perl5/5.36 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl-base /usr/lib/x86_64-linux-gnu/perl/5.36 /usr/share/perl/5.36 /usr/local/lib/site_perl) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+Setting up iputils-ping (3:20221126-1+deb12u1) ...
+root@31ba86c22a4e:/# ping compose-test-conteneur_flopesque-1
+PING compose-test-conteneur_flopesque-1 (172.18.0.3) 56(84) bytes of data.
+```
 
