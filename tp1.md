@@ -30,6 +30,7 @@ CONTAINER ID   IMAGE             COMMAND                  CREATED         STATUS
 d01718a8dcf0   it4lik/meow-api   "python3 -m http.ser…"   6 minutes ago   Up 4 minutes   0.0.0.0:8000->8000/tcp   condescending_booth
 - afficher toutes les informations relatives au conteneur avec une commande docker inspect
   PS C:\Users\nepht> docker inspect d01718a8dcf0
+  ```
 [
     {
         "Id": "d01718a8dcf04bda715af04c15dfa6aa512f10b79edbeae85e2ef035cafb15d3",
@@ -254,10 +255,17 @@ d01718a8dcf0   it4lik/meow-api   "python3 -m http.ser…"   6 minutes ago   Up 4
         }
     }
 ]
-
+```
 - depuis le navigateur de votre PC, visiter la route / de l'API sur http://votre_ip:8000
-  MEOOOOW ðŸˆðŸˆðŸˆðŸˆðŸˆðŸˆ
-
+  ```
+  {
+  "message": "Available routes",
+  "routes": {
+    "get_user_by_id": "http://localhost:8000/user/1",
+    "list_all_users": "http://localhost:8000/users"
+  }
+}
+```
 
   🌞 Lancer le conteneur en tâche de fond
 
@@ -265,10 +273,11 @@ d01718a8dcf0   it4lik/meow-api   "python3 -m http.ser…"   6 minutes ago   Up 4
   PS C:\Users\nepht> docker run -p -d 8000:8888 it4lik/meow-api 
 
 - Consultez les logs du conteneur
+```
  PS C:\Users\nepht> docker run -d -p 8000:8888 it4lik/meow-api
  >>
  56710f2ab2db5562346a35d90ca6beb67406a3513a1d678ba823ad33ab8224ec
-
+```
 avec une commande docker logs
 
 il faudra préciser l'ID ou le nom du conteneur en argument à la commande
