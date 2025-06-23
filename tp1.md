@@ -17,3 +17,11 @@ cb5bd488993b: Pull complete
 3828cfa2baf2: Pull complete
 Digest: sha256:51264a230802917353c166e1c4989fa94d22f632c8f10db2a8ff273d2a2887e4
 Status: Downloaded newer image for it4lik/meow-api:latest
+
+2.Visitons
+
+vérifier que le conteneur est actif avec une commande qui liste les conteneurs en cours de fonctionnement
+afficher les logs du conteneur
+afficher toutes les informations relatives au conteneur avec une commande docker inspect
+
+depuis le navigateur de votre PC, visiter la route / de l'API sur http://votre_ip:8000
