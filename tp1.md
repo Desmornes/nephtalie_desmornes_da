@@ -435,22 +435,61 @@ a1d950f7ca0b750749dfbeab4d712f33c5f7ca407618a1bb0d4934aff3903d19
 B. Packagez vous-meme un app
 🌞 Ecrire un Dockerfile pour packager ce code
 
-inspirez-vous de la structure de mon app/ et du Dockerfile qu'il contient
-réservez encore un nouveau dossier sur votre machine pour stocker le code et son Dockerfile
+```bash
+FROM python:3.11-slim
+
+WORKDIR /app
+COPY app.py .
+
+RUN pip install emoji
+
+CMD ["python", "app.py"]
+```
 
 
 🌞 Build l'image
 
 déplace-toi dans ton répertoire
 docker build . -t python_app:version_de_ouf
+```bash
+PS C:\Users\nepht\emoji-app> docker build . -t python_app:version_de_ouf
+>>
+[+] Building 8.4s (9/9) FINISHED                                                                                                                 docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                                                             0.2s
+ => => transferring dockerfile: 144B                                                                                                                             0.0s 
+ => [internal] load metadata for docker.io/library/python:3.11-slim                                                                                              1.3s
+ => [internal] load .dockerignore                                                                                                                                0.1s
+ => => transferring context: 2B                                                                                                                                  0.0s 
+ => CACHED [1/4] FROM docker.io/library/python:3.11-slim@sha256:9e1912aab0a30bbd9488eb79063f68f42a68ab0946cbe98fecf197fe5b085506                                 0.0s
+ => [internal] load build context                                                                                                                                0.2s 
+ => => transferring context: 132B                                                                                                                                0.0s
+ => [2/4] WORKDIR /app                                                                                                                                           0.2s 
+ => [3/4] COPY app.py .                                                                                                                                          0.1s
+ => [4/4] RUN pip install emoji                                                                                                                                  5.4s 
+ => exporting to image                                                                                                                                           0.5s 
+ => => exporting layers                                                                                                                                          0.4s 
+ => => writing image sha256:9b68999be1a3e2a97499e12133293afaace88d213c2e6d595eef70a17983ed6e                                                                     0.0s 
+ => => naming to docker.io/library/python_app:version_de_ouf                                                                                                     0.0s 
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/p5lc4zfct5t56esv1sce9537a
+```
 
 🌞 Proof !
+```bash
+PS C:\Users\nepht\emoji-app> docker images
+REPOSITORY                                      TAG              IMAGE ID       CREATED              SIZE
+python_app                                      version_de_ouf   9b68999be1a3   About a minute ago   146MB
+meow-api                                        latest           c0caba471e48   46 minutes ago       130MB
+it4lik/meow-api                                 latest           b91b5ab0010d   6 hours ago          234MB
 
-une fois le build terminé, constater que l'image est dispo avec une commande docker
+```
 
 
 🌞 Lancer l'image
+```bash
+PS C:\Users\nepht\emoji-app> docker run python_app:version_de_ouf
+Cet exemple d'application est vraiment naze 👎
+```
 
-lance l'image avec docker run :
 
 
