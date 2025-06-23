@@ -3,7 +3,7 @@ II. Un premier conteneur en vif
 
 1. Simple run
 - Lancer un conteneur meow-api
-PS C:\Users\nepht> docker run -p 8000:8000 it4lik/meow-api
+   docker run -p 8000:8000 it4lik/meow-api
 Unable to find image 'it4lik/meow-api:latest' locally
 latest: Pulling from it4lik/meow-api
 0c01110621e0: Pull complete
