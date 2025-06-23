@@ -316,4 +316,45 @@ Hello world
 ```
 
 
+PARTIE 2
+🌞 Récupérez des images
+
+avec la commande docker pull
+
+récupérez :
+
+l'image python officielle en version 3.11 (python:3.11 pour la dernière version)
+l'image mysql officielle en version 8.0.42
+l'image wordpress officielle en dernière version
+
+c'est le tag :latest pour récupérer la dernière version
+si aucun tag n'est précisé, :latest est automatiquement ajouté
+
+
+l'image linuxserver/wikijs en dernière version
+```bash
+docker pull python:3.11
+docker pull mysql:8.0.4
+docker pull wordpress:latest
+docker pull linuxserver/wikijs:latest
+``` 
+
+listez les images que vous avez sur la machine avec une commande docker
+```bash
+docker images
+PS C:\Users\nepht> docker images
+REPOSITORY                                      TAG       IMAGE ID       CREATED        SIZE
+it4lik/meow-api                                 latest    b91b5ab0010d   5 hours ago    234MB
+it4lik/meow-api                                 <none>    bfaaa2024a8d   6 days ago     1.02GB
+linuxserver/wikijs                              latest    5dbb81dacc62   9 days ago     484MB
+python                                          3.11      98b8dc21a9bf   2 weeks ago    1.01GB
+wordpress                                       latest    7ae09634a9ff   7 weeks ago    703MB
+ubuntu                                          latest    a04dc4851cbc   4 months ago   78.1MB
+hello-world                                     latest    74cc54e27dc4   5 months ago   10.1kB
+docker.elastic.co/elasticsearch/elasticsearch   7.17.10   a305059888ba   2 years ago    622MB
+docker.elastic.co/kibana/kibana                 7.17.10   ba4afcebad69   2 years ago    811MB
+docker.elastic.co/logstash/logstash             7.17.10   1fe6f316b8af   2 years ago    782MB
+mysql                                           8.0.4     96dd4fed4359   7 years ago    291MB
+
+``
 
