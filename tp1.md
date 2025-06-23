@@ -607,5 +607,6 @@ debconf: falling back to frontend: Teletype
 Setting up iputils-ping (3:20221126-1+deb12u1) ...
 root@31ba86c22a4e:/# ping compose-test-conteneur_flopesque-1
 PING compose-test-conteneur_flopesque-1 (172.18.0.3) 56(84) bytes of data.
+64 bytes from compose-test-conteneur_flopesque-1.compose-test_default (172.18.0.3): icmp_seq=295 ttl=64 time=0.125 ms
 ```
 
