@@ -273,14 +273,10 @@ d01718a8dcf0   it4lik/meow-api   "python3 -m http.ser…"   6 minutes ago   Up 4
 
 - ajoutez -d à la commande
   ```
-  PS C:\Users\nepht> docker run -p -d 8000:8888 it4lik/meow-api 
-  ```
-- Consultez les logs du conteneur
-```
- PS C:\Users\nepht> docker run -d -p 8000:8888 it4lik/meow-api
- >>
- 56710f2ab2db5562346a35d90ca6beb67406a3513a1d678ba823ad33ab8224ec
-```
-avec une commande docker logs
+  PS C:\Users\nepht> docker run -p -d 8000:8888 it4lik/meow-api
+   >>
+ 56710f2ab2db5562346a35d90ca6beb67406a3513a1d678ba823ad33ab8224ec 
+ ```
+- Consultez les logs du conteneur avec une commande docker logs
 
 il faudra préciser l'ID ou le nom du conteneur en argument à la commande
