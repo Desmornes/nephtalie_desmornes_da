@@ -491,5 +491,65 @@ PS C:\Users\nepht\emoji-app> docker run python_app:version_de_ouf
 Cet exemple d'application est vraiment naze 👎
 ```
 
+C. Ecrire votre propre Dockerfile
+➜ Pour cette partie, récupérer un bout de code à vous
+
+de préférence un service HTTP, un front web ou une API, peu importe
+t'as bien un truc qui traîne, un exo tout simple d'un autre cours ou quoi
+un truc standalone : qui a pas besoin de db ou quoi
+
+🌞 Ecrire un Dockerfile pour packager votre application, il contient notamment :
+
+```bash
+FROM python:3.11-slim
+
+WORKDIR /app
+COPY app.py .
+
+CMD ["python", "app.py"]
+```
+
+🌞 Publiez votre image sur le Docker Hub
+```bash
+PS C:\Users\nepht\tp-da> docker build . -t nephtalied/tp-da     
+[+] Building 2.8s (8/8) FINISHED                                                                                                                 docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                                                             0.2s
+ => => transferring dockerfile: 119B                                                                                                                             0.0s 
+ => [internal] load metadata for docker.io/library/python:3.11-slim                                                                                              1.3s
+ => [internal] load .dockerignore                                                                                                                                0.2s
+ => => transferring context: 2B                                                                                                                                  0.0s 
+ => [1/3] FROM docker.io/library/python:3.11-slim@sha256:9e1912aab0a30bbd9488eb79063f68f42a68ab0946cbe98fecf197fe5b085506                                        0.0s
+ => => transferring context: 415B                                                                                                                                0.1s 
+ => CACHED [2/3] WORKDIR /app                                                                                                                                    0.0s 
+ => [3/3] COPY app.py .                                                                                                                                          0.2s 
+ => exporting to image                                                                                                                                           0.3s 
+ => => exporting layers                                                                                                                                          0.2s 
+ => => writing image sha256:f208d0453a11636e0068b32c897d4be984945befd526de304ee3868b8a86e2b6                                                                     0.0s 
+ => => naming to docker.io/nephtalied/tp-da                                                                                                                      0.0s 
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/e895cgime24e5v9hm8f6hxkk2
+PS C:\Users\nepht\tp-da> docker login
+USING WEB-BASED LOGIN
+To sign in with credentials on the command line, use 'docker login -u <username>'
+
+Your one-time device confirmation code is: DJKJ-CMFZ
+Press ENTER to open your browser or submit your device code here: https://login.docker.com/activate
+
+Waiting for authentication in the browser…
+
+Login Succeeded
+PS C:\Users\nepht\tp-da> docker push nephtalied/tp-da
+Using default tag: latest
+The push refers to repository [docker.io/nephtalied/tp-da]
+c812b7d74c09: Pushed
+141ea2023b4e: Pushed
+79d7628d5b6b: Mounted from library/python
+d731454f914a: Mounted from library/python
+905dadf3a0ed: Mounted from library/python
+7fb72a7d1a8e: Mounted from library/python
+latest: digest: sha256:fa8c95c2be8fcf2d0a32a38264b9dc7e76c342c448bf608ad59604f0e65e6548 size: 1572
+PS C:\Users\nepht\tp-da> 
+```
+
 
 
