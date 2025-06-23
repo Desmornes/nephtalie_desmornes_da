@@ -610,3 +610,85 @@ PING compose-test-conteneur_flopesque-1 (172.18.0.3) 56(84) bytes of data.
 64 bytes from compose-test-conteneur_flopesque-1.compose-test_default (172.18.0.3): icmp_seq=295 ttl=64 time=0.125 ms
 ```
 
+II. A working meow-api
+6. Rendu attendu
+🌞 Dans votre README de rendu
+
+un docker compose up qui fonctionne
+```bash
+PS C:\Users\nepht\meow-api>
+docker compose up --build -d
+[+] Building 1.3s (10/10) FINISHED                                                                                                               docker:desktop-linux
+ => [meow-api internal] load build definition from Dockerfile                                                                                                    0.1s
+ => => transferring dockerfile: 167B                                                                                                                             0.0s 
+ => [meow-api internal] load metadata for docker.io/library/python:3.11-slim                                                                                     0.7s 
+ => [meow-api internal] load .dockerignore                                                                                                                       0.1s
+ => => transferring context: 2B                                                                                                                                  0.0s 
+ => [meow-api 1/4] FROM docker.io/library/python:3.11-slim@sha256:9e1912aab0a30bbd9488eb79063f68f42a68ab0946cbe98fecf197fe5b085506                               0.0s 
+ => [meow-api internal] load build context                                                                                                                       0.0s 
+ => => transferring context: 28B                                                                                                                                 0.0s 
+ => CACHED [meow-api 2/4] WORKDIR /app                                                                                                                           0.0s
+ => CACHED [meow-api 3/4] COPY app.py .                                                                                                                          0.0s 
+ => CACHED [meow-api 4/4] RUN pip install flask mysql-connector-python                                                                                           0.0s 
+ => [meow-api] exporting to image                                                                                                                                0.1s
+ => => exporting layers                                                                                                                                          0.0s 
+ => => writing image sha256:5a20bef8e955d1eb92aaf7f9173d69ca4979702e612925ce36b63caebf8fec3c                                                                     0.0s 
+ => => naming to docker.io/library/meow-api-meow-api                                                                                                             0.0s 
+ => [meow-api] resolving provenance for metadata file                                                                                                            0.0s 
+[+] Running 3/3
+ ✔ meow-api                       Built                                                                                                                          0.0s 
+ ✔ Container meow-api-db-1        Running                                                                                                                        0.0s 
+ ✔ Container meow-api-meow-api-1  Running                                                                                                                        0.0s 
+PS C:\Users\nepht\meow-api>
+``` 
+un curl sur l'API, sur la route /users
+```bash
+PS C:\Users\nepht\meow-api> curl http://localhost:8000/users
+
+
+StatusCode        : 200
+StatusDescription : OK
+Content           : [{"favorite_insult":"Tu pues des yeux","id":1,"name":"Alice"},{"favorite_insult":"Esp\u00c3\u00a8ce de clavier sans
+                    touches","id":2,"name":"Bob"},{"favorite_insult":"T\u00c3\u00aate de 404","id":3,"na...
+RawContent        : HTTP/1.1 200 OK
+                    Connection: close
+                    Content-Length: 367
+                    Content-Type: application/json
+                    Date: Mon, 23 Jun 2025 21:52:30 GMT
+                    Server: Werkzeug/3.1.3 Python/3.11.13
+
+                    [{"favorite_insult":"Tu pues des ...
+Forms             : {}
+Headers           : {[Connection, close], [Content-Length, 367], [Content-Type, application/json], [Date, Mon, 23 Jun 2025 21:52:30 GMT]...}
+Images            : {}
+InputFields       : {}
+Links             : {}
+ParsedHtml        : System.__ComObject
+RawContentLength  : 367
+```
+un curl sur l'API, sur la route /user/3
+```bash
+PS C:\Users\nepht\meow-api> curl http://localhost:8000/user/3
+
+
+StatusCode        : 200
+StatusDescription : OK
+Content           : {"favorite_insult":"Tete de 404","id":3,"name":"Charlie"}
+
+RawContent        : HTTP/1.1 200 OK
+                    Connection: close
+                    Content-Length: 69
+                    Content-Type: application/json
+                    Date: Mon, 23 Jun 2025 21:53:51 GMT
+                    Server: Werkzeug/3.1.3 Python/3.11.13
+
+                    {"favorite_insult":"T\u00c3\u00aat...
+Forms             : {}
+Headers           : {[Connection, close], [Content-Length, 69], [Content-Type, application/json], [Date, Mon, 23 Jun 2025 21:53:51 GMT]...}
+Images            : {}
+InputFields       : {}
+Links             : {}
+ParsedHtml        : System.__ComObject
+RawContentLength  : 69
+
+```
